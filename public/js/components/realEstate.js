@@ -150,88 +150,68 @@ var Filter = function (_Component) {
             { className: 'amenities' },
             _react2.default.createElement(
               'label',
-              { 'for': 'option-1' },
+              { htmlFor: 'options' },
               'Elevator',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'elevator',
-                name: 'option-1',
-                className: 'option-1'
+                name: 'options',
+                className: 'options'
               })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'amenities' },
+            ),
             _react2.default.createElement(
               'label',
-              { 'for': 'option-2' },
+              { htmlFor: 'options' },
               'Storage',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'storage',
-                name: 'option-2',
-                className: 'option-2'
+                name: 'options',
+                className: 'options'
               })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'amenities' },
+            ),
             _react2.default.createElement(
               'label',
-              { 'for': 'option-3' },
+              { htmlFor: 'options' },
               'Bathtub',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'bathtub',
-                name: 'option-3',
-                className: 'option-3'
+                name: 'options',
+                className: 'options'
               })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'amenities' },
+            ),
             _react2.default.createElement(
               'label',
-              { 'for': 'option-4' },
+              { htmlFor: 'options' },
               'Separate Shower',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'separate-shower',
-                name: 'option-4',
-                className: 'option-4'
+                name: 'options',
+                className: 'options'
               })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'amenities' },
+            ),
             _react2.default.createElement(
               'label',
-              { 'for': 'option-5' },
+              { htmlFor: 'options' },
               'Fireplace',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'fireplace',
-                name: 'option-5',
-                className: 'option-5'
+                name: 'options',
+                className: 'options'
               })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'amenities' },
+            ),
             _react2.default.createElement(
               'label',
-              { 'for': 'option-6' },
+              { htmlFor: 'options' },
               'Swimming Pool',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'swimming-pool',
-                name: 'option-6',
-                className: 'option-6'
+                name: 'options',
+                className: 'options'
               })
             )
           )
