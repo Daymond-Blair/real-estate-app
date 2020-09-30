@@ -430,7 +430,18 @@ var Listings = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'search-area' },
-          _react2.default.createElement('input', { type: 'text', placeholder: 'Short stay', name: 'search' })
+          _react2.default.createElement('input', { type: 'text', placeholder: 'Short stay', name: 'search' }),
+          _react2.default.createElement('i', { className: 'fa fa-times', 'aria-hidden': 'true' }),
+          _react2.default.createElement('i', { className: 'fa fa-location-arrow', 'aria-hidden': 'true' }),
+          _react2.default.createElement(
+            'select',
+            { name: 'location', className: 'location' },
+            _react2.default.createElement(
+              'option',
+              null,
+              'My location '
+            )
+          )
         ),
         _react2.default.createElement(
           'section',
@@ -482,19 +493,27 @@ var Listings = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'details' },
-                _react2.default.createElement('div', { className: 'user-img' }),
                 _react2.default.createElement(
                   'div',
-                  { className: 'user-details' },
+                  { className: 'user-img-column' },
+                  _react2.default.createElement('div', { className: 'user-img' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'user-details-column' },
                   _react2.default.createElement(
-                    'span',
-                    { className: 'user-name' },
-                    'jim earl'
-                  ),
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'post-date' },
-                    '09/26/2020'
+                    'div',
+                    { className: 'user-details' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'user-name' },
+                      'Agatha Thompson'
+                    ),
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'post-date' },
+                      '09/26/2020'
+                    )
                   ),
                   _react2.default.createElement(
                     'div',
@@ -502,11 +521,16 @@ var Listings = function (_Component) {
                     _react2.default.createElement(
                       'div',
                       { className: 'floor-space' },
-                      _react2.default.createElement('i', { className: 'fa fa-square-o', 'aria-hidden': 'true' }),
+                      _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
                       _react2.default.createElement(
                         'span',
                         null,
                         '1000 ft\xB2'
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        'unfurnished'
                       )
                     ),
                     _react2.default.createElement(
@@ -517,6 +541,15 @@ var Listings = function (_Component) {
                         'span',
                         null,
                         '3 bedrooms'
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        null,
+                        _react2.default.createElement(
+                          'a',
+                          null,
+                          'view map'
+                        )
                       )
                     )
                   )
