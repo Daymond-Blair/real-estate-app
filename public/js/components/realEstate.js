@@ -481,94 +481,295 @@ var Listings = function (_Component) {
           { className: 'listings-results' },
           _react2.default.createElement(
             'div',
-            { className: 'listing' },
+            { className: 'col-md-3' },
             _react2.default.createElement(
               'div',
-              { className: 'listing-img' },
-              _react2.default.createElement(
-                'span',
-                { className: 'address' },
-                'address'
-              ),
+              { className: 'listing' },
               _react2.default.createElement(
                 'div',
-                { className: 'details' },
+                { className: 'listing-img' },
                 _react2.default.createElement(
-                  'div',
-                  { className: 'user-img-column' },
-                  _react2.default.createElement('div', { className: 'user-img' })
+                  'span',
+                  { className: 'address' },
+                  'newcastle on tines'
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'user-details-column' },
+                  { className: 'details' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'user-details' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'user-name' },
-                      'Agatha Thompson'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'post-date' },
-                      '09/26/2020'
-                    )
+                    { className: 'col-user-img' },
+                    _react2.default.createElement('div', { className: 'user-img' })
                   ),
                   _react2.default.createElement(
                     'div',
-                    { className: 'listing-details' },
+                    { className: 'col-md-9' },
                     _react2.default.createElement(
                       'div',
-                      { className: 'floor-space' },
-                      _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                      { className: 'user-details' },
                       _react2.default.createElement(
                         'span',
-                        null,
-                        '1000 ft\xB2'
+                        { className: 'user-name' },
+                        'Agatha Thompson'
                       ),
                       _react2.default.createElement(
                         'span',
-                        null,
-                        'unfurnished'
+                        { className: 'post-date' },
+                        '09/26/2020'
                       )
                     ),
                     _react2.default.createElement(
                       'div',
-                      { className: 'bedrooms' },
-                      _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                      { className: 'listing-details' },
                       _react2.default.createElement(
-                        'span',
-                        null,
-                        '3 bedrooms'
+                        'div',
+                        { className: 'floor-space' },
+                        _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '1000 ft\xB2'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          'unfurnished'
+                        )
                       ),
                       _react2.default.createElement(
-                        'span',
-                        null,
+                        'div',
+                        { className: 'bedrooms' },
+                        _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
                         _react2.default.createElement(
-                          'a',
+                          'span',
                           null,
-                          'view map'
+                          '3 bedrooms'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          _react2.default.createElement(
+                            'a',
+                            { href: true },
+                            'view map'
+                          )
                         )
                       )
                     )
                   )
                 )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'bottom-info' },
-              _react2.default.createElement(
-                'span',
-                null,
-                '$1100 /month'
               ),
               _react2.default.createElement(
-                'span',
-                null,
-                _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
-                'Renton, WA'
+                'div',
+                { className: 'bottom-info' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '$4500/month'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'map-marker' },
+                  _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
+                  'Seattle'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-3' },
+            _react2.default.createElement(
+              'div',
+              { className: 'listing' },
+              _react2.default.createElement(
+                'div',
+                { className: 'listing-img' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'address' },
+                  'newcastle on tines'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'details' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-user-img' },
+                    _react2.default.createElement('div', { className: 'user-img' })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-9' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'user-details' },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'user-name' },
+                        'Agatha Thompson'
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'post-date' },
+                        '09/26/2020'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'listing-details' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'floor-space' },
+                        _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '1000 ft\xB2'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          'unfurnished'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'bedrooms' },
+                        _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '3 bedrooms'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          _react2.default.createElement(
+                            'a',
+                            { href: true },
+                            'view map'
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'bottom-info' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '$4500/month'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'map-marker' },
+                  _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
+                  'Seattle'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-3' },
+            _react2.default.createElement(
+              'div',
+              { className: 'listing' },
+              _react2.default.createElement(
+                'div',
+                { className: 'listing-img' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'address' },
+                  'newcastle on tines'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'details' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-user-img' },
+                    _react2.default.createElement('div', { className: 'user-img' })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-9' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'user-details' },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'user-name' },
+                        'Agatha Thompson'
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'post-date' },
+                        '09/26/2020'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'listing-details' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'floor-space' },
+                        _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '1000 ft\xB2'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          'unfurnished'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'bedrooms' },
+                        _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '3 bedrooms'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          _react2.default.createElement(
+                            'a',
+                            { href: true },
+                            'view map'
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'bottom-info' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '$4500/month'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'map-marker' },
+                  _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
+                  'Seattle'
+                )
               )
             )
           )
@@ -578,7 +779,7 @@ var Listings = function (_Component) {
           { className: 'pagination' },
           _react2.default.createElement(
             'ul',
-            { className: 'pagination-numbers' },
+            { className: 'pages' },
             _react2.default.createElement(
               'li',
               null,
@@ -596,7 +797,7 @@ var Listings = function (_Component) {
             ),
             _react2.default.createElement(
               'li',
-              null,
+              { className: 'active' },
               '3'
             ),
             _react2.default.createElement(
