@@ -37,9 +37,7 @@ var Filter = function (_Component) {
     };
     return _this;
   }
-  // clickedBtn = () => {
-  //   console.log('swag')
-  // }
+  // In this child component, we render the Filter section of our site - we use props or properties to gain access to the change method from our parent component - from here, we simply set that method equal to the onChange attribute for any input field or other field we want the user to be able to edit/change
 
 
   _createClass(Filter, [{
@@ -58,29 +56,119 @@ var Filter = function (_Component) {
           ),
           _react2.default.createElement(
             'select',
-            { name: 'neighborhood', className: 'neighborhood' },
+            {
+              name: 'city',
+              className: 'city',
+              onChange: this.props.change,
+              defaultValue: ''
+            },
             _react2.default.createElement(
               'option',
-              null,
-              'Neighborhood'
+              { value: '', disabled: true, hidden: true },
+              'City'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'All' },
+              'All Cities'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Greenville' },
+              'Greenville'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Renton' },
+              'Renton'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Seattle' },
+              'Seattle'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Tacoma' },
+              'Tacoma'
             )
           ),
           _react2.default.createElement(
             'select',
-            { name: 'house-type', className: 'house-type' },
+            {
+              name: 'house_type',
+              className: 'house-type',
+              onChange: this.props.change,
+              defaultValue: ''
+            },
             _react2.default.createElement(
               'option',
-              null,
-              'Type of House'
+              { value: '', disabled: true, hidden: true },
+              'Type'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'All' },
+              'All Homes'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Apartment' },
+              'Apartment'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'House' },
+              'House'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Townhome' },
+              'Townhome'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: 'Condo' },
+              'Condo'
             )
           ),
           _react2.default.createElement(
             'select',
-            { name: 'interior', className: 'interior' },
+            {
+              name: 'bedrooms',
+              className: 'bedrooms',
+              onChange: this.props.change,
+              defaultValue: ''
+            },
             _react2.default.createElement(
               'option',
-              null,
-              'Interior'
+              { value: '', disabled: true, hidden: true },
+              'Rooms'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '0' },
+              'Studio'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '1' },
+              '1 Bed'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '2' },
+              '2 Beds'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '3' },
+              '3 Beds'
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '4' },
+              '4+ Beds'
             )
           ),
           _react2.default.createElement(
@@ -98,9 +186,11 @@ var Filter = function (_Component) {
             ),
             _react2.default.createElement('input', {
               type: 'text',
-              name: 'min-price',
+              name: 'min_price',
               className: 'min-price',
-              placeholder: 'Min Rent'
+              placeholder: 'Min Price',
+              onChange: this.props.change,
+              value: this.props.globalState.min_price
             }),
             _react2.default.createElement(
               'span',
@@ -109,9 +199,11 @@ var Filter = function (_Component) {
             ),
             _react2.default.createElement('input', {
               type: 'text',
-              name: 'max-price',
+              name: 'max_price',
               className: 'max-price',
-              placeholder: 'Max Rent'
+              placeholder: 'Max Price',
+              onChange: this.props.change,
+              value: this.props.globalState.max_price
             })
           ),
           _react2.default.createElement(
@@ -120,18 +212,20 @@ var Filter = function (_Component) {
             _react2.default.createElement(
               'title',
               null,
-              'Floor Space'
+              'Square Feet'
             ),
             _react2.default.createElement(
               'h5',
               { className: 'title' },
-              'floor space'
+              'square feet'
             ),
             _react2.default.createElement('input', {
               type: 'text',
-              name: 'min-space',
+              name: 'min_space',
               className: 'min-space',
-              placeholder: 'Min Space'
+              placeholder: 'Min Feet',
+              onChange: this.props.change,
+              value: this.props.globalState.min_space
             }),
             _react2.default.createElement(
               'span',
@@ -140,9 +234,11 @@ var Filter = function (_Component) {
             ),
             _react2.default.createElement('input', {
               type: 'text',
-              name: 'max-space',
+              name: 'max_space',
               className: 'max-space',
-              placeholder: 'Max Space'
+              placeholder: 'Max Feet',
+              onChange: this.props.change,
+              value: this.props.globalState.max_space
             })
           ),
           _react2.default.createElement(
@@ -150,68 +246,75 @@ var Filter = function (_Component) {
             { className: 'amenities' },
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
+              null,
               'Elevator',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'elevator',
-                name: 'options',
-                className: 'options'
+                name: 'elevator',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
+                // value={this.props.globalState.elevator}
               })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
+              null,
               'Storage',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'storage',
-                name: 'options',
-                className: 'options'
+                name: 'storage',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
               })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
-              'Bathtub',
+              null,
+              'Jacuzzi Tub',
               _react2.default.createElement('input', {
                 type: 'checkbox',
-                value: 'bathtub',
-                name: 'options',
-                className: 'options'
+                value: 'jacuzzi-tub',
+                name: 'jacuzzi_tub',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
               })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
+              null,
               'Separate Shower',
               _react2.default.createElement('input', {
                 type: 'checkbox',
-                value: 'separate-shower',
-                name: 'options',
-                className: 'options'
+                value: 'separate_shower',
+                name: 'separate_shower',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
               })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
+              null,
               'Fireplace',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'fireplace',
-                name: 'options',
-                className: 'options'
+                name: 'fireplace',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
               })
             ),
             _react2.default.createElement(
               'label',
-              { htmlFor: 'options' },
+              null,
               'Swimming Pool',
               _react2.default.createElement('input', {
                 type: 'checkbox',
                 value: 'swimming-pool',
-                name: 'options',
-                className: 'options'
+                name: 'swimming_pool',
+                className: 'amenities-checkbox',
+                onChange: this.props.change
               })
             )
           )
@@ -414,6 +517,10 @@ var Listings = function (_Component) {
     _this.myListing = function () {
       var listingsData = _this.props.listingsData;
 
+
+      if (listingsData == undefined || listingsData.length == 0) {
+        return 'No matches found in this city';
+      }
 
       return listingsData.map(function (listing, index) {
         return _react2.default.createElement(
@@ -661,8 +768,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var listingsData = [{
   address: '5050 Secondhand Lane',
-  city: 'Oakland',
-  state: 'New York',
+  city: 'Tacoma',
+  state: 'Washington',
   rooms: 4,
   price: 5200,
   floorSpace: 2300,
@@ -738,6 +845,8 @@ var _listingsData2 = _interopRequireDefault(_listingsData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -747,23 +856,77 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_Component) {
   _inherits(App, _Component);
 
+  // The class constructor should hold any data we want to manipulate throughout the application as state
   function App() {
     _classCallCheck(this, App);
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
     _this.state = {
-      name: 'Joe',
-      listingsData: _listingsData2.default
+      // name: 'Joe',
+      listingsData: _listingsData2.default,
+      city: 'All',
+      house_type: 'All',
+      bedrooms: 0,
+      min_price: '0',
+      max_price: '1000000',
+      min_space: '0',
+      max_space: '8000',
+      elevator: false,
+      storage: false,
+      jacuzzi_tub: false,
+      separate_shower: false,
+      fireplace: false,
+      swimming_pool: false,
+      filteredData: _listingsData2.default
     };
+    _this.change = _this.change.bind(_this);
+    _this.filteredData = _this.filteredData.bind(_this);
     return _this;
   }
-  // clickedBtn = () => {
-  //   console.log('swag')
-  // }
+
+  // Create method to trigger anytime we do a change on a field in the form
 
 
   _createClass(App, [{
+    key: 'change',
+    value: function change(event) {
+      var _this2 = this;
+
+      // Initialize variables to hold name and value - if the value is from a checkbox rather than an input or select/option then simply return checked, otherwise, return the field's/target's value - set component state equal to the name and value collected when edited/changed - FOR DEBUG, console log the state to ensure things are working
+      var name, value;
+      name = event.target.name;
+      value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+      this.setState(_defineProperty({}, name, value), function () {
+        console.log(_this2.state);
+        _this2.filteredData();
+      });
+    }
+    // Create method to filter through data
+    // todo: try splitting price and space up into two different methods so that they can be filtered independently and still show results
+
+  }, {
+    key: 'filteredData',
+    value: function filteredData() {
+      var _this3 = this;
+
+      var newData = this.state.listingsData.filter(function (listing) {
+        return listing.price >= _this3.state.min_price && listing.price <= _this3.state.max_price || listing.floorSpace >= _this3.state.min_space && listing.floorSpace <= _this3.state.max_space;
+      });
+
+      if (this.state.city != 'All') {
+        newData = newData.filter(function (listing) {
+          return listing.city == _this3.state.city;
+        });
+      }
+
+      this.setState({
+        filteredData: newData
+      });
+    }
+    // In our render function which renders the page to be visible, the change method down into the Filter child component - now we can use that to track when a change is made to the child component
+
+  }, {
     key: 'render',
     value: function render() {
       // console.log(this.state.listingsData)
@@ -774,8 +937,8 @@ var App = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'content-area' },
-          _react2.default.createElement(_Filter2.default, null),
-          _react2.default.createElement(_Listings2.default, { listingsData: this.state.listingsData })
+          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state }),
+          _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData })
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
