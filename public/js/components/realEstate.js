@@ -39,8 +39,12 @@ var Filter = function (_Component) {
   }
   // In this child component, we render the Filter section of our site - we use props or properties to gain access to the change method from our parent component - from here, we simply set that method equal to the onChange attribute for any input field or other field we want the user to be able to edit/change
 
-
   _createClass(Filter, [{
+    key: 'UNSAFE_componentWillMount',
+    value: function UNSAFE_componentWillMount() {
+      this.props.populateAction();
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -519,7 +523,7 @@ var Listings = function (_Component) {
 
 
       if (listingsData == undefined || listingsData.length == 0) {
-        return 'No matches found in this city';
+        return 'No matches found';
       }
 
       return listingsData.map(function (listing, index) {
@@ -591,7 +595,7 @@ var Listings = function (_Component) {
                       _react2.default.createElement(
                         'span',
                         null,
-                        listing.rooms,
+                        listing.bedrooms,
                         ' bedrooms'
                       ),
                       _react2.default.createElement(
@@ -767,35 +771,45 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var listingsData = [{
-  address: '5050 Secondhand Lane',
+  address: '5050 Secondhand Ln.',
   city: 'Tacoma',
   state: 'Washington',
-  rooms: 4,
+  bedrooms: 4,
   price: 5200,
   floorSpace: 2300,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  homeType: 'apartment',
+  house_type: 'Townhome',
   image: 'https://i.pinimg.com/564x/18/77/77/187777a8e40b4733cbb809152839a70a.jpg'
 }, {
-  address: '3252 Hwy 1 South',
+  address: '3252 Hwy 1 S.',
   city: 'Greenville',
   state: 'Mississippi',
-  rooms: 3,
+  bedrooms: 3,
   price: 900,
   floorSpace: 1700,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  homeType: 'house',
+  house_type: 'House',
   image: 'https://i.pinimg.com/564x/5e/5e/39/5e5e39706d7a3de972d2d21c7ff2832f.jpg '
 }, {
-  address: '1300 Eagle Ridge Dr. S',
+  address: '1300 Eagle Ridge Dr. S.',
   city: 'Renton',
   state: 'Washington',
-  rooms: 2,
+  bedrooms: 2,
   price: 1450,
   floorSpace: 800,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  homeType: 'condo',
+  house_type: 'Condo',
   image: 'https://cdnimages.familyhomeplans.com/plans/75167/75167-b600.jpg'
+}, {
+  address: '619 15th Ave. E.',
+  city: 'Seattle',
+  state: 'Washington',
+  bedrooms: 0,
+  price: 1850,
+  floorSpace: 300,
+  extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
+  house_type: 'Apartment',
+  image: 'https://tinyurl.com/y29s8uqy'
 }];
 
 exports.default = listingsData;
@@ -845,6 +859,8 @@ var _listingsData2 = _interopRequireDefault(_listingsData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -860,6 +876,7 @@ var App = function (_Component) {
   function App() {
     _classCallCheck(this, App);
 
+    //**********CREATE STATE**********/
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
     _this.state = {
@@ -878,14 +895,18 @@ var App = function (_Component) {
       separate_shower: false,
       fireplace: false,
       swimming_pool: false,
-      filteredData: _listingsData2.default
+      filteredData: _listingsData2.default,
+      populateFormsData: []
     };
+
     _this.change = _this.change.bind(_this);
     _this.filteredData = _this.filteredData.bind(_this);
+    _this.populateForms = _this.populateForms.bind(_this);
     return _this;
   }
 
-  // Create method to trigger anytime we do a change on a field in the form
+  // **********CHANGE DATA**********
+  // Create method to trigger anytime we do a change on a field in the form in order for this to work, we will pass it down into the "filter" child component as a prop/property
 
 
   _createClass(App, [{
@@ -902,6 +923,8 @@ var App = function (_Component) {
         _this2.filteredData();
       });
     }
+
+    // **********FILTER DATA**********
     // Create method to filter through data
     // todo: try splitting price and space up into two different methods so that they can be filtered independently and still show results
 
@@ -911,19 +934,73 @@ var App = function (_Component) {
       var _this3 = this;
 
       var newData = this.state.listingsData.filter(function (listing) {
-        return listing.price >= _this3.state.min_price && listing.price <= _this3.state.max_price || listing.floorSpace >= _this3.state.min_space && listing.floorSpace <= _this3.state.max_space;
+        return listing.price >= _this3.state.min_price && listing.price <= _this3.state.max_price && listing.floorSpace >= _this3.state.min_space && listing.floorSpace <= _this3.state.max_space && listing.bedrooms >= _this3.state.bedrooms;
       });
 
+      // Filter through city
       if (this.state.city != 'All') {
         newData = newData.filter(function (listing) {
           return listing.city == _this3.state.city;
         });
       }
 
+      // Filter through home type
+      if (this.state.house_type != 'All') {
+        newData = newData.filter(function (listing) {
+          return listing.house_type == _this3.state.house_type;
+        });
+      }
+
+      // Pass the filtered data back up to the core state in our constructor
       this.setState({
         filteredData: newData
       });
     }
+
+    // **********POPULATE FORMS**********
+    // We will pass this method down into "filter" child component as a prop/property
+
+  }, {
+    key: 'populateForms',
+    value: function populateForms() {
+      var _this4 = this;
+
+      // Create variable to store array of cities from data
+      var cities = this.state.listingsData.map(function (listing) {
+        return listing.city;
+      });
+      // Take the city data and create a set so that there are no duplicate cities
+      cities = new Set(cities);
+      // Finally, take the Set object and use the spread operator to "spread it into an array"
+      cities = [].concat(_toConsumableArray(cities));
+
+      // house_type
+      var homes = this.state.listingsData.map(function (listing) {
+        return listing.house_type;
+      });
+      homes = new Set(homes);
+      homes = [].concat(_toConsumableArray(homes));
+
+      // bedrooms
+      var bedrooms = this.state.listingsData.map(function (listing) {
+        return listing.bedrooms;
+      });
+      bedrooms = new Set(bedrooms);
+      bedrooms = [].concat(_toConsumableArray(bedrooms));
+
+      // Pass populated data from this function back up into the core state in our constructor
+      this.setState({
+        populateFormsData: {
+          cities: cities,
+          homes: homes,
+          bedrooms: bedrooms
+        }
+      }, function () {
+        console.log(_this4.state);
+      });
+    }
+
+    //**********RENDER CORE APPLICATION**********/
     // In our render function which renders the page to be visible, the change method down into the Filter child component - now we can use that to track when a change is made to the child component
 
   }, {
@@ -937,7 +1014,11 @@ var App = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'content-area' },
-          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state }),
+          _react2.default.createElement(_Filter2.default, {
+            change: this.change,
+            globalState: this.state,
+            populateAction: this.populateForms
+          }),
           _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData })
         ),
         _react2.default.createElement(_Footer2.default, null)
