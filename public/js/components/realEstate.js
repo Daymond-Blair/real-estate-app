@@ -35,14 +35,64 @@ var Filter = function (_Component) {
     _this.state = {
       name: 'Joe'
     };
+
+    _this.cities = _this.cities.bind(_this);
     return _this;
   }
   // In this child component, we render the Filter section of our site - we use props or properties to gain access to the change method from our parent component - from here, we simply set that method equal to the onChange attribute for any input field or other field we want the user to be able to edit/change
 
   _createClass(Filter, [{
-    key: 'UNSAFE_componentWillMount',
-    value: function UNSAFE_componentWillMount() {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
       this.props.populateAction();
+    }
+  }, {
+    key: 'cities',
+    value: function cities() {
+      if (this.props.globalState.populateFormsData.cities != undefined) {
+        var cities = this.props.globalState.populateFormsData.cities;
+        // console.log(cities)
+
+        return cities.map(function (listing) {
+          return _react2.default.createElement(
+            'option',
+            { key: listing, value: listing },
+            listing
+          );
+        });
+      }
+    }
+  }, {
+    key: 'homes',
+    value: function homes() {
+      if (this.props.globalState.populateFormsData.homes != undefined) {
+        var homes = this.props.globalState.populateFormsData.homes;
+
+        console.log(homes);
+        return homes.map(function (listing) {
+          return _react2.default.createElement(
+            'option',
+            { key: listing, value: listing },
+            listing
+          );
+        });
+      }
+    }
+  }, {
+    key: 'bedrooms',
+    value: function bedrooms() {
+      if (this.props.globalState.populateFormsData.bedrooms != undefined) {
+        var bedrooms = this.props.globalState.populateFormsData.bedrooms;
+
+        console.log(bedrooms);
+        return bedrooms.map(function (listing) {
+          return _react2.default.createElement(
+            'option',
+            { key: listing, value: listing },
+            listing
+          );
+        });
+      }
     }
   }, {
     key: 'render',
@@ -76,26 +126,7 @@ var Filter = function (_Component) {
               { value: 'All' },
               'All Cities'
             ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Greenville' },
-              'Greenville'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Renton' },
-              'Renton'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Seattle' },
-              'Seattle'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Tacoma' },
-              'Tacoma'
-            )
+            this.cities()
           ),
           _react2.default.createElement(
             'select',
@@ -115,26 +146,7 @@ var Filter = function (_Component) {
               { value: 'All' },
               'All Homes'
             ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Apartment' },
-              'Apartment'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'House' },
-              'House'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Townhome' },
-              'Townhome'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Condo' },
-              'Condo'
-            )
+            this.homes()
           ),
           _react2.default.createElement(
             'select',
@@ -151,29 +163,10 @@ var Filter = function (_Component) {
             ),
             _react2.default.createElement(
               'option',
-              { value: '0' },
-              'Studio'
+              { value: 'All' },
+              'All Rooms'
             ),
-            _react2.default.createElement(
-              'option',
-              { value: '1' },
-              '1 Bed'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: '2' },
-              '2 Beds'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: '3' },
-              '3 Beds'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: '4' },
-              '4+ Beds'
-            )
+            this.bedrooms()
           ),
           _react2.default.createElement(
             'div',
@@ -521,119 +514,229 @@ var Listings = function (_Component) {
     _this.myListing = function () {
       var listingsData = _this.props.listingsData;
 
-
+      console.log(listingsData);
       if (listingsData == undefined || listingsData.length == 0) {
         return 'No matches found';
       }
 
       return listingsData.map(function (listing, index) {
-        return _react2.default.createElement(
-          'div',
-          { className: 'col-md-3', key: index },
-          _react2.default.createElement(
+        if (_this.props.globalState.view == 'grid') {
+          // **********RETURN GRID VIEW**********
+          return _react2.default.createElement(
             'div',
-            { className: 'listing' },
+            { className: 'col-md-3', key: index },
             _react2.default.createElement(
               'div',
-              {
-                className: 'listing-img',
-                style: { background: 'url("' + listing.image + '")' }
-              },
-              _react2.default.createElement(
-                'span',
-                { className: 'address' },
-                listing.address
-              ),
+              { className: 'listing' },
               _react2.default.createElement(
                 'div',
-                { className: 'details' },
+                {
+                  className: 'listing-img',
+                  style: { background: 'url("' + listing.image + '")' }
+                },
                 _react2.default.createElement(
-                  'div',
-                  { className: 'col-user-img' },
-                  _react2.default.createElement('div', { className: 'user-img' })
+                  'span',
+                  { className: 'address' },
+                  listing.address
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'col-md-9' },
+                  { className: 'details' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'user-details' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'user-name' },
-                      'Agatha Thompson'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'post-date' },
-                      '09/26/2020'
-                    )
+                    { className: 'col-user-img' },
+                    _react2.default.createElement('div', { className: 'user-img' })
                   ),
                   _react2.default.createElement(
                     'div',
-                    { className: 'listing-details' },
+                    { className: 'col-md-9' },
                     _react2.default.createElement(
                       'div',
-                      { className: 'floor-space' },
-                      _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                      { className: 'user-details' },
                       _react2.default.createElement(
                         'span',
-                        null,
-                        listing.floorSpace,
-                        ' ft\xB2'
+                        { className: 'user-name' },
+                        'Agatha Thompson'
                       ),
                       _react2.default.createElement(
                         'span',
-                        null,
-                        'unfurnished'
+                        { className: 'post-date' },
+                        '09/26/2020'
                       )
                     ),
                     _react2.default.createElement(
                       'div',
-                      { className: 'bedrooms' },
-                      _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                      { className: 'listing-details' },
                       _react2.default.createElement(
-                        'span',
-                        null,
-                        listing.bedrooms,
-                        ' bedrooms'
+                        'div',
+                        { className: 'floor-space' },
+                        _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          listing.floorSpace,
+                          ' ft\xB2'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          'unfurnished'
+                        )
                       ),
                       _react2.default.createElement(
-                        'span',
-                        null,
+                        'div',
+                        { className: 'bedrooms' },
+                        _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
                         _react2.default.createElement(
-                          'a',
-                          { href: true },
-                          'view map'
+                          'span',
+                          null,
+                          listing.bedrooms
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          _react2.default.createElement(
+                            'a',
+                            { href: true },
+                            'view map'
+                          )
                         )
                       )
                     )
                   )
                 )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'bottom-info' },
-              _react2.default.createElement(
-                'span',
-                { className: 'price' },
-                '$',
-                listing.price,
-                '/month'
               ),
-              _react2.default.createElement('br', null),
               _react2.default.createElement(
-                'span',
-                { className: 'map-marker' },
-                _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
-                listing.city,
-                ', ',
-                listing.state
+                'div',
+                { className: 'bottom-info' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '$',
+                  listing.price,
+                  '/month'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'map-marker' },
+                  _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
+                  listing.city,
+                  ', ',
+                  listing.state
+                )
               )
             )
-          )
-        );
+          );
+        } else {
+          // **********RETURN LIST VIEW**********
+          return _react2.default.createElement(
+            'div',
+            { className: 'col-md-12 col-lg-6', key: index },
+            _react2.default.createElement(
+              'div',
+              { className: 'listing' },
+              _react2.default.createElement(
+                'div',
+                {
+                  className: 'listing-img',
+                  style: { background: 'url("' + listing.image + '")' }
+                },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'address' },
+                  listing.address
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'details' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-user-img' },
+                    _react2.default.createElement('div', { className: 'user-img' })
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-9' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'user-details' },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'user-name' },
+                        'Agatha Thompson'
+                      ),
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'post-date' },
+                        '09/26/2020'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'listing-details' },
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'floor-space' },
+                        _react2.default.createElement('i', { className: 'fa fa-calculator', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          listing.floorSpace,
+                          ' ft\xB2'
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          'unfurnished'
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'bedrooms' },
+                        _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          listing.bedrooms
+                        ),
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          _react2.default.createElement(
+                            'a',
+                            { href: true },
+                            'view map'
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'bottom-info' },
+                _react2.default.createElement(
+                  'span',
+                  { className: 'price' },
+                  '$',
+                  listing.price,
+                  '/month'
+                ),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'map-marker' },
+                  _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
+                  listing.city,
+                  ', ',
+                  listing.state
+                )
+              )
+            )
+          );
+        }
       });
     };
 
@@ -656,7 +759,12 @@ var Listings = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'search-area' },
-          _react2.default.createElement('input', { type: 'text', placeholder: 'Short stay', name: 'search' }),
+          _react2.default.createElement('input', {
+            type: 'text',
+            placeholder: 'Short stay',
+            name: 'search',
+            onChange: this.props.change
+          }),
           _react2.default.createElement('i', { className: 'fa fa-times', 'aria-hidden': 'true' }),
           _react2.default.createElement('i', { className: 'fa fa-location-arrow', 'aria-hidden': 'true' }),
           _react2.default.createElement(
@@ -675,37 +783,50 @@ var Listings = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'results' },
-            '3920 results found'
+            this.props.globalState.filteredData.length,
+            ' results found'
           ),
           _react2.default.createElement(
             'div',
             { className: 'sort-options' },
             _react2.default.createElement(
               'select',
-              { name: 'sort', className: 'sort' },
-              _react2.default.createElement(
-                'option',
-                { value: 'price-ascending' },
-                'highest price'
-              ),
+              { name: 'sort', className: 'sort', onChange: this.props.change },
               _react2.default.createElement(
                 'option',
                 { value: 'price-descending' },
                 'lowest price'
+              ),
+              _react2.default.createElement(
+                'option',
+                { value: 'price-ascending' },
+                'highest price'
               )
             ),
             _react2.default.createElement(
               'div',
               { className: 'view' },
-              _react2.default.createElement('i', { className: 'fa fa-list', 'aria-hidden': 'true' }),
-              _react2.default.createElement('i', { className: 'fa fa-th', 'aria-hidden': 'true' })
+              _react2.default.createElement('i', {
+                className: 'fa fa-list',
+                'aria-hidden': 'true',
+                onClick: this.props.changeView.bind(null, 'list')
+              }),
+              _react2.default.createElement('i', {
+                className: 'fa fa-th',
+                'aria-hidden': 'true',
+                onClick: this.props.changeView.bind(null, 'grid')
+              })
             )
           )
         ),
         _react2.default.createElement(
           'section',
           { className: 'listings-results' },
-          this.myListing()
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            this.myListing()
+          )
         ),
         _react2.default.createElement(
           'section',
@@ -774,27 +895,27 @@ var listingsData = [{
   address: '5050 Secondhand Ln.',
   city: 'Tacoma',
   state: 'Washington',
-  bedrooms: 4,
+  bedrooms: '0',
   price: 5200,
   floorSpace: 2300,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  house_type: 'Townhome',
+  house_type: 'Studio',
   image: 'https://i.pinimg.com/564x/18/77/77/187777a8e40b4733cbb809152839a70a.jpg'
 }, {
   address: '3252 Hwy 1 S.',
   city: 'Greenville',
   state: 'Mississippi',
-  bedrooms: 3,
+  bedrooms: '1 Bed',
   price: 900,
   floorSpace: 1700,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  house_type: 'House',
+  house_type: 'Apartment',
   image: 'https://i.pinimg.com/564x/5e/5e/39/5e5e39706d7a3de972d2d21c7ff2832f.jpg '
 }, {
   address: '1300 Eagle Ridge Dr. S.',
   city: 'Renton',
   state: 'Washington',
-  bedrooms: 2,
+  bedrooms: '2 Bed',
   price: 1450,
   floorSpace: 800,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
@@ -804,11 +925,31 @@ var listingsData = [{
   address: '619 15th Ave. E.',
   city: 'Seattle',
   state: 'Washington',
-  bedrooms: 0,
+  bedrooms: '3 Bed',
   price: 1850,
-  floorSpace: 300,
+  floorSpace: 1500,
   extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
-  house_type: 'Apartment',
+  house_type: 'Townhome',
+  image: 'https://tinyurl.com/y29s8uqy'
+}, {
+  address: '808 Heartbreak Ln',
+  city: 'Redmond',
+  state: 'Washington',
+  bedrooms: '4+ Bed',
+  price: 2600,
+  floorSpace: 1800,
+  extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
+  house_type: 'House',
+  image: 'https://tinyurl.com/y29s8uqy'
+}, {
+  address: '300 Jarrod Oaks Ct.',
+  city: 'Atlanta',
+  state: 'Georgia',
+  bedrooms: '4+ Bed',
+  price: 3000,
+  floorSpace: 2100,
+  extras: ['elevator', 'storage', 'elevator', 'bathtub', 'fireplace'],
+  house_type: 'House',
   image: 'https://tinyurl.com/y29s8uqy'
 }];
 
@@ -884,7 +1025,7 @@ var App = function (_Component) {
       listingsData: _listingsData2.default,
       city: 'All',
       house_type: 'All',
-      bedrooms: 0,
+      bedrooms: '0',
       min_price: '0',
       max_price: '1000000',
       min_space: '0',
@@ -896,20 +1037,35 @@ var App = function (_Component) {
       fireplace: false,
       swimming_pool: false,
       filteredData: _listingsData2.default,
-      populateFormsData: []
+      populateFormsData: '',
+      sort: 'price-descending',
+      view: 'grid',
+      search: '',
+      bgColor: ''
     };
 
     _this.change = _this.change.bind(_this);
     _this.filteredData = _this.filteredData.bind(_this);
-    _this.populateForms = _this.populateForms.bind(_this);
+    _this.populateFormsData = _this.populateFormsData.bind(_this);
+    _this.changeView = _this.changeView.bind(_this);
     return _this;
   }
 
-  // **********CHANGE DATA**********
-  // Create method to trigger anytime we do a change on a field in the form in order for this to work, we will pass it down into the "filter" child component as a prop/property
-
-
   _createClass(App, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var listingsData = this.state.listingsData.sort(function (a, b) {
+        return a.price - b.price;
+      });
+      this.setState({
+        listingsData: listingsData
+      });
+    }
+
+    // **********CHANGE DATA**********
+    // Create method to trigger anytime we do a change on a field in the form in order for this to work, we will pass it down into the "filter" child component as a prop/property
+
+  }, {
     key: 'change',
     value: function change(event) {
       var _this2 = this;
@@ -924,6 +1080,25 @@ var App = function (_Component) {
       });
     }
 
+    // **********CHANGE COLOR**********
+
+  }, {
+    key: 'changeColor',
+    value: function changeColor(color) {
+      this.setState({
+        bgColor: color
+      });
+    }
+
+    // **********CHANGE VIEW**********
+
+  }, {
+    key: 'changeView',
+    value: function changeView(viewName) {
+      this.setState({
+        view: viewName
+      });
+    }
     // **********FILTER DATA**********
     // Create method to filter through data
     // todo: try splitting price and space up into two different methods so that they can be filtered independently and still show results
@@ -951,6 +1126,31 @@ var App = function (_Component) {
         });
       }
 
+      // Sort by descending (default)
+      if (this.state.sort == 'price-descending') {
+        newData = newData.sort(function (a, b) {
+          return a.price - b.price;
+        });
+      }
+
+      // Sort by ascending
+      if (this.state.sort == 'price-ascending') {
+        newData = newData.sort(function (a, b) {
+          return b.price - a.price;
+        });
+      }
+
+      if (this.state.search != '') {
+        newData = newData.filter(function (listing) {
+          var city = listing.city.toLowerCase();
+          var searchText = _this3.state.search.toLowerCase();
+          var n = city.match(searchText);
+
+          if (n != null) {
+            return true;
+          }
+        });
+      }
       // Pass the filtered data back up to the core state in our constructor
       this.setState({
         filteredData: newData
@@ -961,8 +1161,8 @@ var App = function (_Component) {
     // We will pass this method down into "filter" child component as a prop/property
 
   }, {
-    key: 'populateForms',
-    value: function populateForms() {
+    key: 'populateFormsData',
+    value: function populateFormsData() {
       var _this4 = this;
 
       // Create variable to store array of cities from data
@@ -973,6 +1173,7 @@ var App = function (_Component) {
       cities = new Set(cities);
       // Finally, take the Set object and use the spread operator to "spread it into an array"
       cities = [].concat(_toConsumableArray(cities));
+      cities = cities.sort();
 
       // house_type
       var homes = this.state.listingsData.map(function (listing) {
@@ -980,14 +1181,14 @@ var App = function (_Component) {
       });
       homes = new Set(homes);
       homes = [].concat(_toConsumableArray(homes));
-
+      homes = homes.sort();
       // bedrooms
       var bedrooms = this.state.listingsData.map(function (listing) {
         return listing.bedrooms;
       });
       bedrooms = new Set(bedrooms);
       bedrooms = [].concat(_toConsumableArray(bedrooms));
-
+      bedrooms = bedrooms.sort();
       // Pass populated data from this function back up into the core state in our constructor
       this.setState({
         populateFormsData: {
@@ -1017,9 +1218,14 @@ var App = function (_Component) {
           _react2.default.createElement(_Filter2.default, {
             change: this.change,
             globalState: this.state,
-            populateAction: this.populateForms
+            populateAction: this.populateFormsData
           }),
-          _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData })
+          _react2.default.createElement(_Listings2.default, {
+            listingsData: this.state.filteredData,
+            change: this.change,
+            globalState: this.state,
+            changeView: this.changeView
+          })
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
