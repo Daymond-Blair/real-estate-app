@@ -1,0 +1,392 @@
+// GLOBAL
+.content-area {
+  overflow: auto;
+  width: 100%;
+  // background: black;
+  min-height: 100vh;
+}
+// LEFT SIDE
+.filter {
+  background: $grey;
+  width: 30%;
+  display: inline-block;
+  float: left;
+  .filter-container {
+    padding: 20px;
+    h4 {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+    select {
+      background: transparent;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: $darkgrey;
+      display: block;
+      margin-bottom: 25px;
+      width: 100%;
+      border: 1px solid $darkgrey;
+    }
+    .filter-price {
+      h5 {
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+        color: $darkgrey;
+        text-transform: capitalize;
+      }
+      input {
+        margin-bottom: 20px;
+        width: 48%;
+        border-radius: 5px;
+        padding: 5px 10px;
+        border: 1px solid $darkgrey;
+      }
+    }
+    .filter-space {
+      h5 {
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 1rem;
+        color: $darkgrey;
+        text-transform: capitalize;
+      }
+      input {
+        margin-bottom: 20px;
+        width: 48%;
+        border-radius: 5px;
+        padding: 5px 10px;
+        border: 1px solid $darkgrey;
+      }
+    }
+    .amenities {
+      width: 100%;
+      label {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        border-bottom: 1px solid $lightgrey;
+        input {
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+// RIGHT SIDE
+.listings {
+  width: 70%;
+  background: $offwhite;
+  display: inline-block;
+  float: right;
+  padding: 15px;
+
+  .search-area {
+    input {
+      width: 70%;
+      background: transparent;
+      font-size: 2rem;
+      font-weight: 300;
+      border: 0;
+      border-bottom: 1px solid $lightgrey;
+      color: $darkgrey;
+      margin-bottom: 20px;
+      // display: inline-block;
+    }
+    select {
+      width: 26%;
+      background: transparent;
+      font-size: 1rem;
+      border: 0;
+      border-bottom: 1px solid $lightgrey;
+      color: $lightgrey;
+      margin-bottom: 10px;
+      // display: inline-block;
+      vertical-align: top;
+    }
+
+    .fa {
+      font-size: 16px;
+      position: absolute;
+      color: $lightgrey;
+    }
+
+    .fa-times {
+      right: 320px;
+    }
+
+    .fa-location-arrow {
+      top: 73px;
+      right: 260px;
+    }
+
+    .location {
+      padding: 0 20px 20px;
+      margin-top: -1px;
+      margin-left: 30px;
+      text-align-last: left;
+    }
+  }
+
+  .sort-area {
+    margin-bottom: 30px;
+    .results {
+      font-size: 0.8rem;
+      color: $darkgrey;
+      display: inline-block;
+    }
+    .sort-options {
+      float: right;
+      .sort {
+        font-size: 0.9rem;
+        font-weight: 300;
+        border: 1px solid $lightgrey;
+        background: transparent;
+        padding: 4px;
+        display: inline-block;
+        margin-right: 15px;
+        vertical-align: top;
+        text-transform: capitalize;
+      }
+
+      .view {
+        display: inline-block;
+
+        .fa {
+          font-size: 1.5rem;
+          margin-right: 15px;
+        }
+
+        .fa-list {
+          color: $lightgrey;
+        }
+      }
+    }
+  }
+
+  .listings-results {
+    margin-bottom: 60px;
+    .listing {
+      background: #fff;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+      -moz-box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+      box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+
+      .listing-img {
+        position: relative;
+        background: url(https://images.coolhouseplans.com/plans/75977/75977-b600.jpg)
+          no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        min-height: 200px;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        color: #fff;
+        padding: 15px;
+
+        &:hover {
+          .details {
+            opacity: 1;
+          }
+        }
+        .address {
+          position: absolute;
+          bottom: 10px;
+          left: 20px;
+          text-transform: capitalize;
+          text-shadow: 0 1px 9px rgba(91, 91, 91, 1);
+          font-size: 1rem;
+          z-index: 2;
+        }
+
+        .details {
+          transition: all 0.4s ease-in-out;
+          opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          padding: 20px;
+          // FIRST TEST GRADIENT
+          // /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7032db+0,c48fc3+100 */
+          // background: rgba(112, 50, 219, 0.8); /* Old browsers */
+          // background: -moz-linear-gradient(
+          //   -45deg,
+          //   rgba(112, 50, 219, 0.8) 0%,
+          //   rgba(196, 143, 195, 0.8) 100%
+          // ); /* FF3.6-15 */
+          // background: -webkit-linear-gradient(
+          //   -45deg,
+          //   rgba(112, 50, 219, 0.8) 0%,
+          //   rgba(196, 143, 195, 0.8) 100%
+          // ); /* Chrome10-25,Safari5.1-6 */
+          // background: linear-gradient(
+          //   135deg,
+          //   rgba(112, 50, 219, 0.8) 0%,
+          //   rgba(196, 143, 195, 0.8) 100%
+          // ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7032db', endColorstr='#c48fc3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+          // SECOND POSSIBLE GRADIENT
+          /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#5008d6+0,c48fc3+100 */
+          background: rgba(80, 8, 214, 0.8); /* Old browsers */
+          background: -moz-linear-gradient(
+            -45deg,
+            rgba(80, 8, 214, 0.8) 0%,
+            rgba(196, 143, 195, 0.8) 100%
+          ); /* FF3.6-15 */
+          background: -webkit-linear-gradient(
+            -45deg,
+            rgba(80, 8, 214, 0.8) 0%,
+            rgba(196, 143, 195, 0.8) 100%
+          ); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(
+            135deg,
+            rgba(80, 8, 214, 0.8) 0%,
+            rgba(196, 143, 195, 0.8) 100%
+          ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5008d6', endColorstr='#c48fc3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+          -webkit-border-top-left-radius: 5px;
+          -webkit-border-top-right-radius: 5px;
+          -moz-border-radius-topleft: 5px;
+          -moz-border-radius-topright: 5px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+
+          .user-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            display: inline-block;
+            background: url(/img/user-img.jpg) no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+          }
+
+          .user-details {
+            vertical-align: top;
+            display: inline-block;
+
+            .user-name {
+              font-weight: 300;
+              font-size: 1rem;
+              color: rgba(255, 255, 255, 1);
+              display: block;
+              margin-top: 3px;
+              margin-bottom: 5px;
+            }
+            .post-date {
+              color: rgba(255, 255, 255, 0.7);
+              display: block;
+              font-size: 1rem;
+            }
+          }
+
+          .listing-details {
+            margin-top: 20px;
+            .floor-space {
+              margin-bottom: 10px;
+            }
+            .fa {
+              display: inline-block;
+              font-size: 20px;
+              margin-right: 8px;
+            }
+            span {
+              display: inline-block;
+              font-size: 0.8rem;
+              font-weight: 300;
+              vertical-align: top;
+              position: relative;
+              top: 3px;
+              margin-right: 15px;
+            }
+            a {
+              text-decoration: underline;
+              color: #fff;
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+    .bottom-info {
+      padding: 10px 20px;
+      line-height: 1.7;
+      color: $darkgrey;
+      .price {
+        font-size: 1rem;
+      }
+      .map-marker {
+        color: $lightgrey;
+        font-size: 1rem;
+        .fa {
+          margin-right: 5px;
+          color: $iconGrey;
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  text-align: center;
+  width: 100%;
+  display: block;
+  .pages {
+    display: inline-block;
+    -webkit-box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+    -moz-box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+    box-shadow: 0 9px 54px -4px rgba(224, 224, 224, 1);
+    li {
+      display: inline-block;
+      padding: 20px 30px;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background: $pink;
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.col-md-3 {
+  width: 33.33%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 15px;
+}
+
+.col-md-9 {
+  width: 75%;
+  display: inline-block;
+}
+
+.col-lg-6 {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 15px;
+}
+.col-user-img {
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+}
